@@ -16,7 +16,7 @@ public class GameOverScene extends AbstractGameScene{
 	private GamePlayingScene playingScene;
 	public GameOverScene(Game game) {
 		super(game);
-		upSpeed=1f;
+		upSpeed=5f; //加快GameOver上升速度
 		this.playingScene=game.playingSence;
 	}
 	public void reset(){
