@@ -1,7 +1,8 @@
 package com.yizhuoyan.flappybird;
 
 import java.awt.Image;
-import java.awt.LayoutManager;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -14,7 +15,6 @@ import javax.swing.UIManager;
 import com.yizhuoyan.flappybird.model.Game;
 import com.yizhuoyan.flappybird.model.GameConfig;
 import com.yizhuoyan.flappybird.util.ResourceUtil;
-import com.yizhuoyan.flappybird.view.GameView;
 
 public class App {
 	public static void main(String[] args){
@@ -48,10 +48,39 @@ public class App {
 				game.stop();
 			}
 		});
-		w.addMouseListener(new MouseAdapter() {
+		w.addMouseListener(new MouseAdapter() {     //鼠标点击控制
 			@Override
 			public void mousePressed(MouseEvent e) {
 				game.currentScene.handleEvent(e);
+			}
+		});
+
+		w.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {     //键盘空格键点击控制
+				int KeyCode = e.getKeyCode();
+				if (KeyCode == KeyEvent.VK_SPACE) {  //VK_SPACE值为32
+
+					try {
+						game.currentScene.handleEvent(e);
+
+					} catch (Exception e2) {
+						e2.printStackTrace();
+
+					}
+
+
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
 			}
 		});
 		game.run();
